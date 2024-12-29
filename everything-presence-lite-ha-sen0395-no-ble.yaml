@@ -4,6 +4,8 @@ substitutions:
   illuminance_update_interval: "2s"
   hidden_ssid: "false"
   log_level: ERROR
+  uart_target_output_disabled: "false"
+  uart_presence_output_disabled: "true"
 
 wifi:
   on_connect:
