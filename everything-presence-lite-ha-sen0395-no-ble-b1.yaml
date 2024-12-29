@@ -8,7 +8,7 @@ substitutions:
   uart_target_output_disabled: "false"
   uart_presence_output_disabled: "true"
 # from EP1 beta
-  project_name: "MoralMunky.Everything Presence One"
+  project_name: "EverythingSmartTechnology.Everything Presence Lite"
   project_version: "1.2.0b"
   temperature_offset: "-3"
   humidity_offset: "5"
@@ -17,10 +17,11 @@ substitutions:
 
 esphome:
   name: ${name}
-  name_add_mac_suffix: false
+  name_add_mac_suffix: true
   friendly_name: ${friendly_name}
-  project_name: ${project_name}
-  project_version: ${project_version}
+  project:
+    name: ${project_name}
+    version: ${project_version}
 
   api:
   encryption:
@@ -32,15 +33,15 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-update:
-  - platform: http_request
-    id: update_http_request
-    name: Everything Presence Lite Firmware
-    source: https://moralmunky.github.io/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble-manifest.json
-    disabled_by_default: true
+# update:
+#   - platform: http_request
+#     id: update_http_request
+#     name: Everything Presence Lite Firmware
+#     source: https://moralmunky.github.io/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble-manifest.json
+#     disabled_by_default: true
 
 dashboard_import:
-  package_import_url: github://moralmunky/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble.yaml@main
+  package_import_url: github://moralmunky/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble-b1.yaml@main
   import_full_config: false # or true
 
 packages:
