@@ -1,0 +1,53 @@
+substitutions:
+  name: "everything-presence-lite"
+  friendly_name: "Everything Presence Lite"
+  illuminance_update_interval: "2s"
+  hidden_ssid: "false"
+  log_level: ERROR
+  factory_reset_disabled: "true"
+  uart_target_output_disabled: "false"
+  uart_presence_output_disabled: "true"
+# from EP1 beta
+  project_name: "MoralMunky.Everything Presence One"
+  project_version: "1.2.0b"
+  temperature_offset: "-3"
+  humidity_offset: "5"
+  temperature_update_interval: "60s"
+  occupancy_delay_off: "15s"
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+  project_name: ${project_name}
+  project_version: ${project_version}
+
+  api:
+  encryption:
+    key: null
+
+wifi:
+  on_connect:
+    - switch.turn_on: mmwave_sensor
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+update:
+  - platform: http_request
+    id: update_http_request
+    name: Everything Presence Lite Firmware
+    source: https://moralmunky.github.io/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble-manifest.json
+    disabled_by_default: true
+
+dashboard_import:
+  package_import_url: github://moralmunky/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble.yaml@main
+  import_full_config: false # or true
+
+packages:
+  device_base: github://moralmunky/everything-presence-lite/common/everything-presence-lite-base.yaml
+  #default
+  #ld2450_base: github://moralmunky/everything-presence-lite/common/sen0395-base.yaml
+  #beta 1
+  #ld2450_base: github://moralmunky/everything-presence-lite/common/sen0395-base-b1.yaml
+  #beta2
+  ld2450_base: github://moralmunky/everything-presence-lite/common/sen0395-base-b2.yaml

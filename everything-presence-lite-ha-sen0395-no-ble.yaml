@@ -4,9 +4,6 @@ substitutions:
   illuminance_update_interval: "2s"
   hidden_ssid: "false"
   log_level: ERROR
-  factory_reset_disabled: "true"
-  uart_target_output_disabled: "false"
-  uart_presence_output_disabled: "true"
 
 wifi:
   on_connect:
@@ -16,11 +13,11 @@ update:
   - platform: http_request
     id: update_http_request
     name: Everything Presence Lite Firmware
-    source: https://moralmunky.github.io/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble-manifest.json
+    source: https://everythingsmarthome.github.io/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble-manifest.json
     disabled_by_default: true
 
 dashboard_import:
-  package_import_url: github://moralmunky/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble.yaml@main
+  package_import_url: github://everythingsmarthome/everything-presence-lite/everything-presence-lite-ha-sen0395-no-ble.yaml@main
   import_full_config: false # or true
 
 packages:
