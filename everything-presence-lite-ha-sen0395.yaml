@@ -17,7 +17,7 @@ update:
     disabled_by_default: true
 
 dashboard_import:
-  package_import_url: github://everythingsmarthome/everything-presence-lite/everything-presence-lite-ha-sen0395.yaml@main
+  package_import_url: github://moralmunky/everything-presence-lite/everything-presence-lite-ha-sen0395.yaml@main
   import_full_config: false # or true
 
 packages:

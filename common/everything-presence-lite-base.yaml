@@ -39,7 +39,7 @@ i2c:
 
 light:
   - platform: status_led
-    name: ESP32 LED
+    name: "${name} ESP32 LED"
     pin: GPIO14
     internal: False
     restore_mode: ALWAYS_OFF
@@ -62,9 +62,13 @@ number:
     on_value:
       - lambda: 'id(illuminance_sensor).update();'
 
+binary_sensor:
+  - platform: status 
+    name: "${name}_state" 
+
 sensor:
   - platform: bh1750
-    name: Illuminance
+    name: "${name}_illuminance"
     id: illuminance_sensor
     i2c_id: bus_a
     address: 0x23
@@ -73,8 +77,20 @@ sensor:
       - lambda: "return x + id(illuminance_offset_ui).state;"
       - clamp:
           min_value: 0
+  - platform: internal_temperature
+    disabled_by_default: True
+    name: "${name} ESP Temperature"
+  - platform: wifi_signal
+    disabled_by_default: True
+    name: "${name}_status" 
+    update_interval: 60s 
+    filters: 
+      - lambda: return x * (-1); 
+  - platform: uptime
+    disabled_by_default: True
+    name: "${name}_uptime"
 
 button:
   - platform: restart
     icon: mdi:power-cycle
-    name: "ESP Reboot"
+    name: "${name} ESP Reboot"
